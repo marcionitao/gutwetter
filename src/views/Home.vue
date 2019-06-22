@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+    <weatherWidget />
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import weatherWidget from '@/components/weatherWidget.vue';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    // eslint-disable-next-line vue/no-unused-components
+    weatherWidget,
   },
 };
 </script>
+
+<style lang="scss" scoped> // some styles 🖍️
+  .home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+</style>

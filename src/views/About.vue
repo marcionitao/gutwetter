@@ -1,5 +1,14 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <p>Thanks <a href="https://www.weatherbit.io/">Weatherbit</a> for public API!</p>
   </div>
 </template>
+
+<style lang="scss" scoped> // some styles 🖍️
+  .about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+</style>
