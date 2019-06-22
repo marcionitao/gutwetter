@@ -15,6 +15,12 @@ export default new Vuex.Store({
   },
   // change state from here
   mutations: {
+    SET_WEATHER(state, weather) {
+      state.dataIsRecived = true;
+      state.weather = weather;
+      console.log(state.weather);
+    },
+    /*
     UPDATE_WEATHER(state) {
       service
         .getWeather() // call the function from service.js that returns the data from API
@@ -28,11 +34,19 @@ export default new Vuex.Store({
           state.dataIsRecived = false; // and mark that data wasn't recived
         });
     },
+*/
   },
   // call mutations that change the state here
   actions: {
+
+    loadWeather: async ({ commit }) => {
+      const weather = (await service.getWeather());
+      commit('SET_WEATHER', weather.data.data[0]);
+    },
+    /*
     updateWeather(context) {
       context.commit('UPDATE_WEATHER');
-    },
+    }, */
   },
+
 });

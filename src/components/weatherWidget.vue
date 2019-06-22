@@ -4,7 +4,7 @@
       <p class="weather-widget__city">{{ weather.city_name }}</p>
       <h2 class="weather-widget__temp">{{ weather.temp }}<span>°C</span></h2>
       <p class="weather-widget__status">{{ weather.weather.description }}</p>
-      <p class="weather-widget__status">{{ weather.app_temp }}</p>
+
       <img v-bind:src=" 'https://www.weatherbit.io/static/img/icons/' + weather.weather.icon + '.png' ">
     </div>
     <div v-else class="weather-widget"> // preloader
@@ -14,8 +14,23 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 
 export default {
+  name: 'weatherWidget',
+  data() {
+    return {};
+  },
+  mounted() {
+    this.loadWeather();
+  },
+  methods: {
+    ...mapActions(['loadWeather']), // do modulo category quero quie se traga a propriedade list
+  },
+  computed: {
+    ...mapState(['weather']),
+  },
+  /*
   computed: {
     weather() {
       return this.$store.state.weather; // gets weather state from Vuex store
@@ -24,6 +39,7 @@ export default {
   created() {
     this.$store.dispatch('updateWeather'); // dispatch "updateWeather" when component is created
   },
+  */
 };
 </script>
 
