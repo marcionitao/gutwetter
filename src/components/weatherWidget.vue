@@ -5,7 +5,7 @@
       <h2 class="weather-widget__temp">{{ weather.temp }}<span>°C</span></h2>
       <p class="weather-widget__status">{{ weather.weather.description }}</p>
       <p class="weather-widget__status">{{ weather.app_temp }}</p>
-      <img src="https://www.weatherbit.io/static/img/icons/a04n.png" alt="">
+      <img v-bind:src=" 'https://www.weatherbit.io/static/img/icons/' + weather.weather.icon + '.png' ">
     </div>
     <div v-else class="weather-widget"> // preloader
       <img src="spinner.svg" alt="">
