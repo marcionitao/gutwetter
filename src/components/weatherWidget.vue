@@ -1,5 +1,13 @@
 <template>
+
   <div>
+
+    <!-- <div>
+      <input type="text" v-model="city">
+      <input type="text" v-model="country">
+      <button @click="Load()">Load</button>
+    </div> -->
+
     <div v-if="this.$store.state.dataIsRecived" class="weather-widget">
       <p class="weather-widget__city">{{ weather.city_name }}</p>
       <h2 class="weather-widget__temp">{{ weather.temp }}<span>°C</span></h2>
@@ -11,6 +19,7 @@
       <img src="spinner.svg" alt="">
     </div>
   </div>
+
 </template>
 
 <script>
@@ -19,27 +28,21 @@ import { mapState, mapActions } from 'vuex';
 export default {
   name: 'weatherWidget',
   data() {
-    return {};
+    return {
+      city: 'Lisbon',
+      country: 'PT',
+    };
   },
   mounted() {
     this.loadWeather();
   },
   methods: {
-    ...mapActions(['loadWeather']), // do modulo category quero quie se traga a propriedade list
+    ...mapActions(['loadWeather']),
   },
   computed: {
     ...mapState(['weather']),
   },
-  /*
-  computed: {
-    weather() {
-      return this.$store.state.weather; // gets weather state from Vuex store
-    },
-  },
-  created() {
-    this.$store.dispatch('updateWeather'); // dispatch "updateWeather" when component is created
-  },
-  */
+
 };
 </script>
 
