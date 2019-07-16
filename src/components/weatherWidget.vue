@@ -2,11 +2,14 @@
 
   <div>
 
-    <!-- <div>
-      <input type="text" v-model="city">
-      <input type="text" v-model="country">
-      <button @click="Load()">Load</button>
-    </div> -->
+    <div>
+      <label for="city">City</label>
+      <input type="text" id="city" v-model="city">
+      <label for="country">Country</label>
+      <input type="text" id="country" v-model="country">
+
+      <a class="waves-effect waves-light btn-small" @click="authChatClient()">Search</a>
+    </div>
 
     <div v-if="this.$store.state.dataIsRecived" class="weather-widget">
       <p class="weather-widget__city">{{ weather.city_name }}</p>
@@ -23,7 +26,9 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
+// eslint-disable-next-line no-unused-vars
+import { API_KEY } from '@/constants';
 
 export default {
   name: 'weatherWidget',
@@ -31,13 +36,26 @@ export default {
     return {
       city: 'Lisbon',
       country: 'PT',
+      api_key: API_KEY,
     };
   },
   mounted() {
-    this.loadWeather();
+    this.authChatClient();
   },
   methods: {
-    ...mapActions(['loadWeather']),
+
+    authChatClient() {
+      const payload = {
+        city: this.city,
+        country: this.country,
+        API_KEY: this.api_key,
+      };
+      this.$store.dispatch('loadWeather', payload);
+
+      // para limpar os campos
+      this.city = '';
+      this.country = '';
+    },
   },
   computed: {
     ...mapState(['weather']),
@@ -55,7 +73,7 @@ export default {
   }
 
   .weather-widget__city {
-    font-size: 20px;
+    font-size: 22px;
     margin: 0;
   }
 
@@ -63,14 +81,14 @@ export default {
     display: flex;
     align-items: flex-start;
     color: #16F4D0;
-    font-size: 200px;
+    font-size: 130px;
     font-weight: 200;
     margin: 0;
 
     span {
       font-size: 30px;
       font-weight: 400;
-      margin-top: 35px;
+      margin-top: 30px;
     }
   }
 
