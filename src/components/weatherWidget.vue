@@ -1,25 +1,27 @@
+<!-- eslint-disable max-len -->
 <template>
 
   <div>
 
     <div>
       <label for="city">City</label>
-      <input type="text" id="city" v-model="city">
+      <input type="text" data-cy='city' id="city" v-model="city">
       <label for="country">Country</label>
-      <input type="text" id="country" v-model="country">
+      <input type="text" data-cy='country' id="country" v-model="country">
 
-      <a class="waves-effect waves-light btn-small" @click="authChatClient()">Search</a>
+      <a class="waves-effect waves-light btn-small" data-cy='btn-search' @click="authChatClient()">Search</a>
     </div>
 
     <div v-if="this.$store.state.dataIsRecived" class="weather-widget">
-      <p class="weather-widget__city">{{ weather.city_name }}</p>
-      <h2 class="weather-widget__temp">{{ weather.temp }}<span>°C</span></h2>
-      <p class="weather-widget__status">{{ weather.weather.description }}</p>
+      <p class="weather-widget__city" data-cy='show-city-name'>{{ weather.city_name }}</p>
+      <h2 class="weather-widget__temp" data-cy='show-weather-temp'>{{ weather.temp }}<span>°C</span></h2>
+      <p class="weather-widget__status" data-cy='show-weather-desc'>{{ weather.weather.description }}</p>
 
-      <img v-bind:src=" 'https://www.weatherbit.io/static/img/icons/' + weather.weather.icon + '.png' ">
+      <img v-bind:src=" 'https://www.weatherbit.io/static/img/icons/' + weather.weather.icon + '.png' " data-cy='show-weather-icon'>
     </div>
-    <div v-else class="weather-widget"> // preloader
-      <img src="spinner.svg" alt="">
+    <div v-else class="weather-widget">
+      <!--preloader-->
+      <img src="spinner.svg" alt="" data-cy='show-preloader'>
     </div>
   </div>
 
@@ -73,7 +75,7 @@ export default {
   }
 
   .weather-widget__city {
-    font-size: 22px;
+    font-size: 20px;
     margin: 0;
   }
 
@@ -81,19 +83,19 @@ export default {
     display: flex;
     align-items: flex-start;
     color: #16F4D0;
-    font-size: 130px;
+    font-size: 100px;
     font-weight: 200;
     margin: 0;
 
     span {
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 400;
-      margin-top: 30px;
+      margin-top: 10px;
     }
   }
 
   .weather-widget__status {
-    font-size: 20px;
+    font-size: 15px;
     margin: 0;
   }
 </style>
