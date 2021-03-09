@@ -29,7 +29,7 @@
     "babel-eslint": "^10.0.1",
     "cypress": "^6.3.0",
     "dot-prop": ">=4.2.1",
-    "elliptic": ">=6.5.3",
+    "elliptic": ">=6.5.4",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "eslint-utils": ">=1.4.1",
